@@ -27,20 +27,39 @@
 		values = {},
 		photos = [],
 		error = '',
-		submitLabel
+		submitLabel,
+		action = '',
+		importPhotoUrl = ''
 	}: {
 		courses: Course[];
 		values?: Values;
 		photos?: ExistingPhoto[];
 		error?: string;
 		submitLabel: string;
+		action?: string;
+		importPhotoUrl?: string;
 	} = $props();
 
 	const inputClass =
 		'rounded-md border border-stone-300 bg-white px-3 py-2 text-sm dark:border-stone-700 dark:bg-stone-900';
 </script>
 
-<form method="POST" enctype="multipart/form-data" class="flex max-w-2xl flex-col gap-4">
+<form
+	method="POST"
+	action={action || undefined}
+	enctype="multipart/form-data"
+	class="flex max-w-2xl flex-col gap-4"
+>
+	{#if importPhotoUrl}
+		<div class="flex items-center gap-3 rounded-md bg-stone-100 p-2 dark:bg-stone-900">
+			<img src={importPhotoUrl} alt="" class="h-16 w-16 rounded object-cover" />
+			<label class="flex items-center gap-2 text-sm">
+				<input type="checkbox" name="import_photo" value="1" checked />
+				Import this photo from the website
+			</label>
+			<input type="hidden" name="import_photo_url" value={importPhotoUrl} />
+		</div>
+	{/if}
 	<label class="flex flex-col gap-1 text-sm font-medium">
 		Title
 		<input name="title" required value={values.title ?? ''} class={inputClass} />

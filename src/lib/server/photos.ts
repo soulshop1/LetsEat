@@ -52,6 +52,34 @@ export async function addPhoto(db: Database, recipeId: string, data: ArrayBuffer
 	);
 }
 
+const IMPORT_PHOTO_MAX_BYTES = 15 * 1024 * 1024;
+
+/** Downloads an image from a (guarded) URL and stores it. Failures are non-fatal. */
+export async function addPhotoFromUrl(
+	db: Database,
+	recipeId: string,
+	url: string
+): Promise<boolean> {
+	const { guardImportUrl } = await import('./url-import');
+	const guarded = guardImportUrl(url);
+	if (!guarded.url) return false;
+	try {
+		const res = await fetch(guarded.url, {
+			signal: AbortSignal.timeout(15_000),
+			headers: { accept: 'image/*' }
+		});
+		if (!res.ok) return false;
+		const type = res.headers.get('content-type') ?? '';
+		if (!type.startsWith('image/')) return false;
+		const data = await res.arrayBuffer();
+		if (data.byteLength === 0 || data.byteLength > IMPORT_PHOTO_MAX_BYTES) return false;
+		await addPhoto(db, recipeId, data);
+		return true;
+	} catch {
+		return false;
+	}
+}
+
 export function deletePhoto(db: Database, photoId: string): void {
 	const row = db.prepare('SELECT recipe_id, filename FROM photos WHERE id = ?').get(photoId) as
 		| { recipe_id: string; filename: string }

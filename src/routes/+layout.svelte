@@ -10,13 +10,27 @@
 			Let's Eat!
 		</a>
 		{#if data.authed}
-			<form method="POST" action="/logout">
-				<button
-					class="rounded-md px-3 py-1.5 text-sm text-stone-500 hover:bg-stone-200 dark:hover:bg-stone-800"
+			<nav class="flex items-center gap-1 text-sm">
+				<a
+					href="/import"
+					class="rounded-md px-3 py-1.5 text-stone-500 hover:bg-stone-200 dark:hover:bg-stone-800"
 				>
-					Log out
-				</button>
-			</form>
+					Import
+				</a>
+				<a
+					href="/settings"
+					class="rounded-md px-3 py-1.5 text-stone-500 hover:bg-stone-200 dark:hover:bg-stone-800"
+				>
+					Settings
+				</a>
+				<form method="POST" action="/logout">
+					<button
+						class="rounded-md px-3 py-1.5 text-stone-500 hover:bg-stone-200 dark:hover:bg-stone-800"
+					>
+						Log out
+					</button>
+				</form>
+			</nav>
 		{/if}
 	</header>
 	<main class="flex-1 pb-8">

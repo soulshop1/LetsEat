@@ -7,8 +7,13 @@ See [SPEC.md](./SPEC.md) for the full product specification and roadmap.
 
 ## Status
 
-**Phase 0** — skeleton: app shell, SQLite schema, single-password auth, Docker
-deployment, CI. Recipe management arrives in Phase 1.
+**Phases 0–2 in place:** recipe library (create/edit, photos, grid browse, full-text
+search and filters, serving scaler, ratings/favorites/cook log, print view), import
+from website URLs with review-before-save, full-library zip export, single-password
+auth, Docker deployment, CI.
+
+Still to come for v1: Recipe Keeper migration (waiting on a sample export file),
+cook mode, and PWA install support.
 
 ## Run it
 

@@ -1,6 +1,6 @@
 import type { Database } from 'better-sqlite3';
 import type { RecipeInput } from './recipes';
-import { addPhoto, deletePhoto } from './photos';
+import { addPhoto, addPhotoFromUrl, deletePhoto } from './photos';
 
 function optionalNumber(value: FormDataEntryValue | null): number | null {
 	const s = String(value ?? '').trim();
@@ -44,5 +44,9 @@ export async function applyPhotoChanges(
 		if (entry instanceof File && entry.size > 0 && entry.type.startsWith('image/')) {
 			await addPhoto(db, recipeId, await entry.arrayBuffer());
 		}
+	}
+	const importUrl = String(form.get('import_photo_url') ?? '');
+	if (importUrl && form.get('import_photo') === '1') {
+		await addPhotoFromUrl(db, recipeId, importUrl);
 	}
 }
