@@ -7,13 +7,13 @@ See [SPEC.md](./SPEC.md) for the full product specification and roadmap.
 
 ## Status
 
-**Phases 0–2 in place:** recipe library (create/edit, photos, grid browse, full-text
+**v1 feature-complete:** recipe library (create/edit, photos, grid browse, full-text
 search and filters, serving scaler, ratings/favorites/cook log, print view), import
-from website URLs with review-before-save, full-library zip export, single-password
-auth, Docker deployment, CI.
+from website URLs with review-before-save, full-library zip export, cook mode with
+screen wake lock, installable PWA, single-password auth, Docker deployment, CI.
 
-Still to come for v1: Recipe Keeper migration (waiting on a sample export file),
-cook mode, and PWA install support.
+Recipe Keeper migration is deferred until an export file is supplied. Next up on the
+roadmap (v1.1): AI-assisted photo and Instagram/YouTube imports.
 
 ## Run it
 

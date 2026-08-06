@@ -78,7 +78,8 @@
 	<section class="mt-8 max-w-xl">
 		<h2 class="mb-1 text-sm font-semibold">From Recipe Keeper</h2>
 		<p class="text-xs text-stone-500">
-			One-time migration from a Recipe Keeper export file — coming in the next update.
+			Planned: one-time migration from a Recipe Keeper export file. Until then, individual
+			recipes can be brought over via their source URLs or manual entry.
 		</p>
 	</section>
 {/if}

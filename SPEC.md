@@ -46,7 +46,7 @@ Guiding principles:
 | Recipe versioning | **Exclude** | Single current version; notes field covers tweaks. |
 | Duplicate detection | **Defer** | Title-similarity warning on import, post-v1. |
 | Import from website URL | **Include** | v1. schema.org/Recipe JSON-LD first, heuristics fallback, always lands in review screen. |
-| Import from Recipe Keeper export | **Include** | v1. One-time migration from Recipe Keeper's export file. |
+| Import from Recipe Keeper export | **Defer (on demand)** | Owner decision 2026-08-06: build when the owner supplies an export file to migrate. |
 | Import from photo / PDF / scan (OCR) | **Defer to v1.1** | Via AI API (owner's Anthropic key). |
 | Import from Instagram / YouTube links | **Defer to v1.1** | Via AI API on caption/transcript. Owner-added requirement, not a Recipe Keeper feature. |
 | Browser extension / share sheet | **Simplify** | PWA share-target so the phone's share sheet can send URLs into the importer (v1.1, with social import). No browser extension. |
@@ -76,7 +76,8 @@ Guiding principles:
    with history list
 6. Cook mode: full-screen steps, large type, screen wake lock, ingredient peek
 7. Import from URL with review/edit screen before saving
-8. Import from Recipe Keeper export file (bulk, with per-recipe error report)
+8. ~~Import from Recipe Keeper export file~~ — deferred to on-demand by owner
+   decision; built when an export file is supplied
 9. Full-library export (zip of JSON + photos)
 10. Single-password login, session cookie, rate-limited
 11. Installable PWA (manifest + icon; app-shell caching only, no offline data in v1)
@@ -358,7 +359,7 @@ Still assumed by default (flag to change):
 | 1 | Language | English-only UI, no i18n scaffolding. |
 | 2 | Library scale target | Designed/tested to ~5,000 recipes, comfortable headroom for one user. |
 | 3 | AI provider (v1.1) | Anthropic API, owner-supplied key. |
-| 4 | Recipe Keeper export sample | **Needed from you before Phase 2** — an actual export file to validate the migration parser against. |
+| 4 | Recipe Keeper export sample | Owner will supply one later if/when migration is wanted; the importer is built at that point against the real file. |
 | 5 | Repo naming | Code lives in this repo (`Commission-Tracker`) on the designated branch; consider renaming the repo. |
 
 ---
