@@ -47,6 +47,12 @@
 		<a href="/" class="text-sm text-stone-500 hover:text-orange-600">← Library</a>
 		<div class="flex gap-2">
 			<a
+				href="/recipes/{data.recipe.id}/cook"
+				class="rounded-md bg-orange-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-700"
+			>
+				Cook
+			</a>
+			<a
 				href="/recipes/{data.recipe.id}/edit"
 				class="rounded-md border border-stone-300 px-3 py-1.5 text-sm hover:bg-stone-100 dark:border-stone-700 dark:hover:bg-stone-800"
 			>
