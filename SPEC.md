@@ -1,4 +1,4 @@
-# Ladle — Product Specification
+# Let's Eat! — Product Specification
 
 A simple, self-hosted recipe manager inspired by Recipe Keeper's clean, approachable
 experience — deliberately smaller in scope, built for one person, running on a home
@@ -13,7 +13,7 @@ interview did not settle are listed in §14 with the default I have assumed.
 
 ## 1. Product vision
 
-Ladle is a single-user, self-hosted recipe library. It does one thing well: capture
+Let's Eat! is a single-user, self-hosted recipe library. It does one thing well: capture
 recipes from anywhere (typed in, pasted from a website URL, migrated from Recipe
 Keeper — later, photographed or pulled from Instagram/YouTube), then make them fast to
 find and pleasant to cook from on a phone in the kitchen.
@@ -42,7 +42,7 @@ Guiding principles:
 | Ratings, favorites | **Include** | 0–5 stars, favorite flag. |
 | Personal notes | **Include** | Free-text notes field on each recipe. |
 | Cooking history / "I cooked this" | **Simplify** | One-tap "Cooked today" log with date list. No streaks/stats. |
-| Nutrition information | **Defer** | Meaningful nutrition needs an ingredient database; revisit post-v1. |
+| Nutrition information | **Exclude** | Owner decision: no nutrition anywhere, permanently. |
 | Recipe versioning | **Exclude** | Single current version; notes field covers tweaks. |
 | Duplicate detection | **Defer** | Title-similarity warning on import, post-v1. |
 | Import from website URL | **Include** | v1. schema.org/Recipe JSON-LD first, heuristics fallback, always lands in review screen. |
@@ -88,15 +88,16 @@ Guiding principles:
   owner-supplied Anthropic API key; PWA share-target so the share sheet feeds the
   importer; duplicate-title warning on import.
 - **v1.2 — Kitchen polish:** offline caching of recently viewed recipes; in-step
-  timers; unit conversion (metric ⇄ US) in the scaler.
+  timers.
 - **v2 — Planning:** weekly meal planner and shopping-list generation with ingredient
   consolidation (re-interview before building; deliberately excluded from v1).
-- **Later / maybe:** nutrition estimates, cookbook PDF export, Litestream off-site
-  DB replication, multi-user.
+- **Later / maybe:** unit conversion (metric ⇄ US) in the scaler, cookbook PDF
+  export, Litestream off-site DB replication, multi-user. Nutrition is excluded
+  permanently by owner decision.
 
 ## 5. Key user journeys
 
-1. **Save a recipe from the web (phone):** open Ladle → "+" → "From URL" → paste link
+1. **Save a recipe from the web (phone):** open Let's Eat! → "+" → "From URL" → paste link
    → importer fetches and parses → review screen shows extracted fields with photo →
    fix anything → Save → recipe detail. Target: under 30 seconds for a well-marked-up
    site.
@@ -195,13 +196,13 @@ text is never destroyed by parsing.
         │ HTTP (LAN)  — HTTPS via reverse proxy is optional and out of scope
         ▼
 ┌─────────────────────────────── Docker host ───────────────────────────────┐
-│  ladle container (one process)                                            │
+│  lets-eat container (one process)                                            │
 │   • Web app: server-rendered pages + API, session auth                    │
 │   • Importer: URL fetcher/parser, Recipe Keeper file parser               │
 │   • Image pipeline: resize/strip-EXIF on upload (sharp)                   │
 │   • SQLite (WAL mode) via better-sqlite3                                  │
 │   └── volume: /data                                                       │
-│         /data/ladle.db (+ -wal/-shm)                                      │
+│         /data/letseat.db (+ -wal/-shm)                                    │
 │         /data/photos/…                                                    │
 └───────────────────────────────────────────────────────────────────────────┘
 ```
@@ -339,19 +340,26 @@ until Phase N works end-to-end.
   accessibility ≥ 90 on home, detail, and form; dark mode follows system preference;
   print view of a recipe fits typical recipes on one page.
 
-## 14. Unresolved decisions (defaults assumed, flag to change)
+## 14. Decisions log and remaining defaults
+
+Resolved by owner (interview round 3, 2026-08-06):
+
+| Question | Decision |
+|---|---|
+| App name | **"Let's Eat!"** (slug `lets-eat`) |
+| Nutrition info | **Excluded permanently** — no nutrition anywhere |
+| Offline access | **Shell-only in v1**; offline recipe cache in v1.2 |
+| Units | **Scale only, no conversion** — quantities stay in the recipe's units |
+
+Still assumed by default (flag to change):
 
 | # | Question | Default assumed |
 |---|---|---|
-| 1 | App name | Working name **"Ladle"** — trivially renameable. |
-| 2 | Nutrition info | Deferred entirely (not in v1 or v1.1). |
-| 3 | Offline access | v1 caches only the app shell; recipes need LAN connectivity. Offline recipe cache is v1.2. |
-| 4 | Units | Quantities stored as entered; no metric⇄US conversion in v1 (v1.2 with the scaler). |
-| 5 | Language | English-only UI, no i18n scaffolding. |
-| 6 | Library scale target | Designed/tested to ~5,000 recipes, comfortable headroom for one user. |
-| 7 | AI provider (v1.1) | Anthropic API, owner-supplied key. |
-| 8 | Recipe Keeper export sample | **Needed from you before Phase 2** — an actual export file to validate the migration parser against. |
-| 9 | Repo naming | Code lives in this repo (`Commission-Tracker`) on the designated branch; consider renaming the repo. |
+| 1 | Language | English-only UI, no i18n scaffolding. |
+| 2 | Library scale target | Designed/tested to ~5,000 recipes, comfortable headroom for one user. |
+| 3 | AI provider (v1.1) | Anthropic API, owner-supplied key. |
+| 4 | Recipe Keeper export sample | **Needed from you before Phase 2** — an actual export file to validate the migration parser against. |
+| 5 | Repo naming | Code lives in this repo (`Commission-Tracker`) on the designated branch; consider renaming the repo. |
 
 ---
 
