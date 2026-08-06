@@ -1,0 +1,35 @@
+{
+	"name": "lets-eat",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "Let's Eat! — a simple, self-hosted recipe manager",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"test": "vitest run",
+		"test:watch": "vitest"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-node": "^5.5.7",
+		"@sveltejs/kit": "^2.70.2",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
+		"@tailwindcss/vite": "^4.3.3",
+		"@types/better-sqlite3": "^9.6.0",
+		"@types/node": "^26.1.2",
+		"svelte": "^5.56.8",
+		"svelte-check": "^4.7.4",
+		"tailwindcss": "^4.3.3",
+		"typescript": "^6.0.3",
+		"vite": "^8.2.0",
+		"vitest": "^4.1.10"
+	},
+	"dependencies": {
+		"@node-rs/argon2": "^2.0.2",
+		"better-sqlite3": "^13.0.3",
+		"drizzle-orm": "^0.45.2",
+		"ulid": "^3.0.2"
+	}
+}

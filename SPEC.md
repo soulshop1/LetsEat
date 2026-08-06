@@ -4,7 +4,7 @@ A simple, self-hosted recipe manager inspired by Recipe Keeper's clean, approach
 experience — deliberately smaller in scope, built for one person, running on a home
 server, used mostly from a phone.
 
-> **Status: DRAFT — awaiting owner approval. No implementation code until approved.**
+> **Status: APPROVED by owner on 2026-08-06. Implementation in progress.**
 
 Decisions in this document come from the discovery interview (2026-08-06). Items the
 interview did not settle are listed in §14 with the default I have assumed.
