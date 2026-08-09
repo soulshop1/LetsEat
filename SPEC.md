@@ -360,7 +360,7 @@ Still assumed by default (flag to change):
 | 2 | Library scale target | Designed/tested to ~5,000 recipes, comfortable headroom for one user. |
 | 3 | AI provider (v1.1) | Anthropic API, owner-supplied key. |
 | 4 | Recipe Keeper export sample | Owner will supply one later if/when migration is wanted; the importer is built at that point against the real file. |
-| 5 | Repo naming | Code lives in this repo (`Commission-Tracker`) on the designated branch; consider renaming the repo. |
+| 5 | Repo naming | ~~Resolved~~ — repo renamed from `Commission-Tracker` to `LetsEat` on 2026-08-09. |
 
 ---
 
