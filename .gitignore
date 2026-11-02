@@ -9,3 +9,11 @@ data/
 .env.*
 !.env.example
 vite.config.ts.timestamp-*
+
+# Xcode
+ios/**/xcuserdata/
+ios/**/*.xcuserstate
+ios/DerivedData/
+*.ipa
+*.dSYM.zip
+*.dSYM

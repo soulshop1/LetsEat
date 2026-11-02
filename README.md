@@ -1,9 +1,8 @@
 # Let's Eat! 🍳
 
-A simple, self-hosted recipe manager for one person. Phone-first, runs on your own
-hardware, one Docker container, all data in a single folder.
+Personal recipe box. **Native iOS (SwiftUI) is the primary product direction** — see [`ios/`](./ios/) and open `ios/LetsEat.xcodeproj` on a Mac.
 
-See [SPEC.md](./SPEC.md) for the full product specification and roadmap.
+The existing SvelteKit + Docker web app remains in-repo as a transitional library / export source (not being redesigned). Spec for that stack: [SPEC.md](./SPEC.md).
 
 ## Status
 
